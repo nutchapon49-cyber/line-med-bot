@@ -278,7 +278,9 @@ def run_scheduler():
         time_module.sleep(30)
 
 
+# เริ่ม scheduler ทันทีเมื่อ import (ทำงานทั้งบน gunicorn และ local)
+_scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
+_scheduler_thread.start()
+
 if __name__ == "__main__":
-    t = threading.Thread(target=run_scheduler, daemon=True)
-    t.start()
     app.run(host="0.0.0.0", port=5000, debug=False)
