@@ -31,6 +31,10 @@ db = Database("medications.db")
 scheduler = MedScheduler(db, line_bot_api)
 
 
+@app.route("/")
+def health():
+    return "OK", 200
+
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
