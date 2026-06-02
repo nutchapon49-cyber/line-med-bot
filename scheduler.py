@@ -24,7 +24,8 @@ class MedScheduler:
                     key = f"{t}"
                     if key not in seen:
                         seen.add(key)
-                        schedule.every().day.at(t).do(
+                        schedule.every().day.at(t, "Asia/Bangkok").do(
+
                             self._send_reminders_at, t
                         ).tag("med")
 
